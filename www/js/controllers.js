@@ -47,7 +47,10 @@ angular.module('starter.controllers', [])
     .success(function(data, status, headers,config){
       console.log('data success');
       console.log(data); // for browser console
-      $scope.result = data; // for UI
+      $scope.result = data;
+      $scope.questionTitles = data[0];
+      console.log('first question:', data[0].questionTitle);  // for UI
+      $scope.firstQuestion = data[0].questionTitle;
     })
     .error(function(data, status, headers,config){
       console.log('data error');
