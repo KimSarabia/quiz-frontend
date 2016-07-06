@@ -41,7 +41,6 @@ angular.module('starter.controllers', [])
       $scope.questions = data;
       console.log('first question:', data[0].questionTitle);  // for UI
       $scope.firstQuestion = data[0].questionTitle;
-      $scope.nextQuestion = data[0].questionTitle;
       console.log('next question:', $scope.nextQuestion);
     })
     .error(function(data, status, headers,config){
@@ -51,6 +50,41 @@ angular.module('starter.controllers', [])
       things = result.data;
       console.log('things:', things);
     });
+
+    $scope.options = {
+      loop: false,
+      effect: 'fade',
+      speed: 500,
+    }
+
+    $scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+      // data.slider is the instance of Swiper
+      $scope.slider = data.slider;
+    });
+
+    $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+      console.log('Slide change is beginning');
+
+    });
+
+    $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+      // note: the indexes are 0-based
+      $scope.activeIndex = data.activeIndex;
+      $scope.previousIndex = data.previousIndex;
+    });
+
+    $scope.$on("$ionicSlides.sliderInitialized", function(event, data) {
+      // grab an instance of the slider
+      $scope.slider = data.slider;
+    });
+
+    function dataChangeHandler(){
+      // call this function when data changes, such as an HTTP request, etc
+      if ( $scope.slider ){
+        $scope.slider.updateLoop();
+    }
+}
+
 })
 
 .controller('CategoriesCtrl', function($scope) {

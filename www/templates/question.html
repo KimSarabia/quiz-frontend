@@ -1,9 +1,33 @@
 <ion-view view-title="Question">
-  <ion-content class="padding">
-    <ion-slide-box>
-      <ion-slide ng-repeat="question in questions">
-        <img ng-src="{{question.questionSample}}">
-      </ion-slide>
-    </ion-slide-box>
+  <ion-content scroll="false">
+    <ion-slides  options="options" slider="data.slider">
+      <ion-slide-page style="background-color:#fff;" ng-repeat="question in questions">
+
+        <div class="box blue" ng-show="goQuestion" ng-if="!goAnswer">
+          <h1>{{question.questionTitle}}</h1>
+        </div>
+
+        <div class="box blue" ng-show="goAnswer" ng-hide="goSample">
+          <h3>{{question.questionAnswer}}</h3>
+          <button ng-click="goSample = !goSample" class="button button-light">
+            See Sample
+          </button>
+        </div>
+
+        <div class="box blue" ng-show="goSample" ng-if="!goQuestion">
+          <img ng-src="{{question.questionSample}}">
+        </div>
+
+  <button ng-click="goQuestion = !goQuestion" class="button button-light">
+    Back to Question
+  </button>
+  <button class="button button-full button-light" ng-click="goAnswer = !goAnswer">
+  {{!goAnswer && 'See' || 'Hide'}} Answer
+  </button>
+
+
+
+      </ion-slide-page>
+    </ion-slides>
   </ion-content>
 </ion-view>
