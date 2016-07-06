@@ -35,6 +35,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('QuestionCtrl', function($scope, $http) {
+  $scope.goAnswer = false;
+
   $scope.result = "";
   $http.get('http://historic-denali-preserve-77338.herokuapp.com/api/questions/')
     .success(function(data, status, headers,config){
@@ -56,6 +58,11 @@ angular.module('starter.controllers', [])
       effect: 'fade',
       speed: 500,
     }
+
+    $scope.revealAnswer = function(val) {
+        $scope.goAnswer = true;
+    }
+
 
     $scope.$on("$ionicSlides.sliderInitialized", function(event, data){
       // data.slider is the instance of Swiper

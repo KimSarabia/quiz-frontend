@@ -1,30 +1,20 @@
 <ion-view view-title="Question">
-  <ion-content scroll="false">
+  <ion-content has-header="true" padding="true" scroll="false">
     <ion-slides  options="options" slider="data.slider">
-      <ion-slide-page style="background-color:#fff;" ng-repeat="question in questions">
+      <ion-slide-page class="slider-background" ng-repeat="question in questions">
 
-        <div class="box blue" ng-show="goQuestion" ng-if="!goAnswer">
+        <div class="box" ng-if="!goAnswer">
           <h1>{{question.questionTitle}}</h1>
         </div>
-
-        <div class="box blue" ng-show="goAnswer" ng-hide="goSample">
-          <h3>{{question.questionAnswer}}</h3>
-          <button ng-click="goSample = !goSample" class="button button-light">
-            See Sample
-          </button>
+        <div class="box" ng-show="goAnswer">
+          <h4>{{question.questionAnswer}}</h4>
         </div>
-
-        <div class="box blue" ng-show="goSample" ng-if="!goQuestion">
+        <div class="box" ng-show="goSample">
           <img ng-src="{{question.questionSample}}">
         </div>
 
-  <button ng-click="goQuestion = !goQuestion" class="button button-light">
-    Back to Question
-  </button>
-  <button class="button button-full button-light" ng-click="goAnswer = !goAnswer">
-  {{!goAnswer && 'See' || 'Hide'}} Answer
-  </button>
-
+        <a ng-class="{true: 'button button-clear button-light' , false: 'button button-clear button-dark'}[!goAnswer]" ng-click="goAnswer = !goAnswer">{{!goAnswer && 'Answer' || 'Back to Question'}}</a>
+        <a ng-class="{true: 'button button-clear button-light' , false: 'button button-clear button-dark'}[!goSample]" ng-click="goSample = !goSample">{{!goSample && 'Sample' || 'Back'}}</a>
 
 
       </ion-slide-page>
