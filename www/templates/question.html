@@ -1,7 +1,11 @@
 <ion-view view-title="Question">
   <ion-content has-header="true" padding="true" scroll="false">
     <ion-slides  options="options" slider="data.slider">
-      <ion-slide-page class="slider-background" ng-repeat="question in questions">
+      <ion-slide-page ng-class="{htmlBackground: question.questionCategory === 'HTML',
+                                cssBackground: question.questionCategory === 'CSS',
+                                jsBackground: question.questionCategory === 'Javascript'
+                                }"
+                      ng-repeat="question in questions">
 
         <div class="box" ng-if="!goAnswer">
           <h1>{{question.questionTitle}}</h1>

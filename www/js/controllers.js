@@ -42,8 +42,6 @@ angular.module('starter.controllers', [])
     .success(function(data, status, headers,config){
       $scope.questions = data;
       console.log('first question:', data[0].questionTitle);  // for UI
-      $scope.firstQuestion = data[0].questionTitle;
-      console.log('next question:', $scope.nextQuestion);
     })
     .error(function(data, status, headers,config){
       console.log('data error');
@@ -59,10 +57,11 @@ angular.module('starter.controllers', [])
       speed: 500,
     }
 
+
+
     $scope.revealAnswer = function(val) {
         $scope.goAnswer = true;
     }
-
 
     $scope.$on("$ionicSlides.sliderInitialized", function(event, data){
       // data.slider is the instance of Swiper
@@ -73,6 +72,8 @@ angular.module('starter.controllers', [])
       console.log('Slide change is beginning');
 
     });
+
+
 
     $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
       // note: the indexes are 0-based
