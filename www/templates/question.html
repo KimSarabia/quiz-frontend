@@ -1,6 +1,9 @@
 <ion-view view-title="Question">
   <ion-content class="padding">
-    <h2>Question:</h2>
-    {{firstQuestion}}
+    <ion-slide-box>
+      <ion-slide ng-repeat="question in questions">
+        <img ng-src="{{question.questionSample}}">
+      </ion-slide>
+    </ion-slide-box>
   </ion-content>
 </ion-view>
